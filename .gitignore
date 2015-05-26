@@ -16,6 +16,7 @@ hs_err_pid*
 .project
 /target/
 .settings
+log4j2.xml
 
 # Maven gitignore
 target/
