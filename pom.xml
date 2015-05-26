@@ -5,14 +5,58 @@
   <groupId>com.mijecu25</groupId>
   <artifactId>personal-backup</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
-  <name>personal-backup</name>
-  <url>http://maven.apache.org</url>
+  <name>PersonalBackup</name>
+  <description>Backup program</description>
+  <url>https://github.com/mijecu25/personal-backup</url>
+  <inceptionYear>2015</inceptionYear>
+  <organization>
+      <name>Mijecu25</name>
+      <url>http://www.mijecu25.com</url>
+  </organization> 
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <licenses>
+  	<license>
+    	<name>MIT License</name>
+        <url>http://www.opensource.org/licenses/mit-license.php</url>
+    </license>
+  </licenses>
+  
+  <scm>
+  	<connection>scm:git:git://github.com/mijecu25/personal-backup.git</connection>
+	<developerConnection>scm:git:git@github.com:mijecu25/personal-backup.git</developerConnection>
+	<url>https://github.com/mijecu25/personal-backup</url>
+   	<tag>HEAD</tag>
+  </scm>
+  
+  <developers>
+  	<developer>
+        <id>miguelvelezmj25</id>
+        <name>Miguel Velez</name>
+        <email>miguelvelez@mijecu25.com</email>
+        <url>http://www.mijecu25.com/miguelvelez.html</url>
+        <roles>
+            <role>developer</role>
+        </roles>
+    </developer>
+  </developers>
+  
+  <distributionManagement>
+  	<snapshotRepository>
+		<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+	</snapshotRepository>
+	
+	<repository>
+		<id>sonatype-nexus-staging</id>
+		<name>Sonatype Nexus release repository</name>
+		<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+	</repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
