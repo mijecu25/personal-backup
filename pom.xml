@@ -67,6 +67,12 @@
     </dependency>
     
     <dependency>
+      <groupId>com.mijecu25</groupId>
+      <artifactId>dsa</artifactId>
+      <version>0.1.1</version>
+    </dependency>
+    
+    <dependency>
 	    <groupId>org.apache.logging.log4j</groupId>
 	    <artifactId>log4j-api</artifactId>
 	    <version>2.3</version>
