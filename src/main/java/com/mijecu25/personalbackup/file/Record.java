@@ -3,11 +3,11 @@ package com.mijecu25.personalbackup.file;
 import java.io.File;
 
 /**
+ * A record is an object in the file system. It could either be a file or a directory.
+
  * @author Miguel Velez
  * 
  * @version 0.1
- * 
- * A record is an object in the file system. It could either be a file or a directory.
  */
 public class Record {
 	
