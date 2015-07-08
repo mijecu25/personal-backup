@@ -5,11 +5,12 @@ import org.apache.logging.log4j.Logger;
 
 import com.mijecu25.dsa.DataStructures.LinkedListQueue;
 import com.mijecu25.personalbackup.file.Directory;
+import com.mijecu25.personalbackup.file.Record;
 
 /**
  * @author Miguel Velez
  * 
- * @version 0.1.1.1
+ * @version 0.1.1.2
  */
 public class BackupManager implements Runnable {
 	
@@ -19,7 +20,7 @@ public class BackupManager implements Runnable {
 	private Directory		destination;
 	private LinkedListQueue filesQueue;
 	private boolean			isDone;
-	
+
 	/**
 	 * Create a new BackupManager.
 	 */
@@ -50,17 +51,33 @@ public class BackupManager implements Runnable {
 	 */
 	@Override
 	public void run() {
-	
 		BackupManager.logger.info("Executing backup manager main logic");
 		
 		// Synchronize the backup manager main logic
 		synchronized(this) {
 			
+			// Create holders for records and directories
+			Record currentRecord;
+			Directory currentDirectory;
+			
 			// While there are more files to process
 			while(!this.filesQueue.isEmpty()) {
 		
 					// dequeue the next file
-					this.filesQueue.dequeue();
+					currentRecord = (Record) this.filesQueue.dequeue();
+										
+					// If the current record is a directory
+					if(currentRecord.isDirectory()) {
+						// Get the current directory
+						currentDirectory = currentRecord.getAsDirectory();
+						
+						Record[] childRecords = currentDirectory.listRecords();
+						
+						for(Record child : childRecords) {
+							this.filesQueue.enqueue(child);
+						}
+					}
+					
 			}
 		
 			// Notify a thread waiting for the backup manager that it can continue
