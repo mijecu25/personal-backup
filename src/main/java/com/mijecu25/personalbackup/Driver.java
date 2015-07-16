@@ -5,11 +5,13 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.mijecu25.personalbackup.visitors.BackupVisitor;
+
 /**
- * @author Miguel Velez
- * @version 0.1.1.1
- * 
  * This is the driver class.
+ * 
+ * @author Miguel Velez
+ * @version 0.1.1.2
  */
 
 public class Driver {
@@ -41,13 +43,13 @@ public class Driver {
 		StringBuilder source = new StringBuilder("C:/Users/Miguel/Desktop/Source");
 		StringBuilder destination = new StringBuilder("C:/Users/Miguel/Desktop/Destination");
 				
-		BackupManager backupManager = new BackupManager(source.toString(), destination.toString());
+		BackupVisitor backupVisitor = new BackupVisitor(source.toString(), destination.toString());
 
-		synchronized (backupManager) {
-			backupManager.startAsThread();
+		synchronized (backupVisitor) {
+			backupVisitor.startAsThread();
 			
 			try {
-				backupManager.wait();
+				backupVisitor.wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
