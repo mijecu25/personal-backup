@@ -1,27 +1,24 @@
 package com.mijecu25.personalbackup.file;
 
-import java.io.File;
-import java.util.Date;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.mijecu25.personalbackup.visitors.FileVisitor;
+
 /**
- * A record is an object in the file system. It could either be a file or a directory.
+ * A record is an actual file in the file system. It is represented by a path.
 
  * @author Miguel Velez
  * 
- * @version 0.1.1.3
+ * @version 0.1.1.4
  */
-public class Record {
+public class Record extends Path {
 	
+	private static final long serialVersionUID = -4425526491071969544L;
+
 	private static final Logger logger = LogManager.getLogger(Record.class);
-	
-	private File 	record;
-//	private long 	created;
-	private long 	lastModified;
+
 	private String 	extension;
-	private long 	length; 
 
 	/**
 	 * Create are record from the specified {@code pathname}.
@@ -29,61 +26,23 @@ public class Record {
 	 * @param pathname the path to a record.
 	 */
 	public Record(String pathname) {
-		this.record = new File(pathname);
-//		this.created = 
-		this.lastModified = this.record.lastModified();
+		super(pathname);
+		
 		this.extension = this.getFileExtension();
 	}
 	
 	/**
-	 * Return the name of the record.
+	 * Accept a file visitor and call the <code>visitRecord</code> method of the visitor
+	 * by passing this record object.
 	 * 
-	 * @return a string that represents the name of the record.
+	 * @param fileVisitor
+	 * @return object returned after visiting this record object
 	 */
-	public String getName() {
-		return this.record.getName();
+	@Override
+	public Object accept(FileVisitor fileVisitor) {
+		return fileVisitor.visitRecord(this);
 	}
-	
-	/**
-	 * Return the path of the record.
-	 * 
-	 * @return a string that represents the path of the record.
-	 */
-	public String getPath() {
-		return this.record.getPath();
-	}
-	
-	/**
-	 * Return a file object that represents this record.
-	 * 
-	 * @return file object of this record.
-	 */
-	public File getFile() {
-		return this.record;
-	}
-	
-//	public long getCreated() {
-//		return this.created;
-//	}
-	
-	/**
-	 * Return the last modified date of the record.
-	 * 
-	 * @return a long representing the last modified time in milliseconds since epoch.
-	 */
-	public long getLastModified() {
-		return this.lastModified;
-	}
-	
-	/**
-	 * Return the last modified date of the record.
-	 * 
-	 * @return a date object representing the last modified time.
-	 */
-	public Date getLastModifiedDate() {
-		return new Date(this.lastModified);
-	}
-	
+			
 	/**
 	 * Return the file extension of the record.
 	 * 
@@ -92,37 +51,6 @@ public class Record {
 	public String getExtension() {
 		return this.extension;
 	}
-	
-	/**
-	 * Return the directory that contains this record.
-	 * 
-	 * @return directory that is the parent of this record.
-	 */
-	public Directory getParent() {
-		return new Directory(record.getParent());
-	}
-	
-	/**
-	 * Return whether the record is a directory.
-	 * 
-	 * @return boolean indicating if the record is a directory.
-	 */
-	public boolean isDirectory() {
-		return this.record.isDirectory();
-	}
-	
-	/**
-	 * Return the length of the record.
-	 * 
-	 * @return a long representing the length in bytes of the record.
-	 */
-	public long getLength() {
-		return this.length;
-	}
-	
-//	public long getCreated() {		 
-//	        System.out.println("creationTime     = " + attr.creationTime());
-//	}
 	
 	/**
 	 * Return the file extension of the record. If the record represents a directory,
@@ -156,28 +84,7 @@ public class Record {
 			return "";
 		}
 	}
-	
-	/**
-	 * Return this record as a directory object. The record must be a directory in
-	 * order to be returned as one.
-	 * 
-	 * @return a reference to a directory object.
-	 */
-	public Directory getAsDirectory() {
-		// If the record is not a directory
-		if(!this.isDirectory()) {
-			throw new ClassCastException("The record: " + this + " is not a directory");
-		}
-		
-		// Create and return a new directory
-		return new Directory(this.record.getPath());
-	}
-	
-	@Override
-	public String toString() {
-		return this.record.getPath();
-	}
-	
+			
 	@Override
 	public boolean equals(Object other) {
 		// If this is the same object
@@ -194,7 +101,7 @@ public class Record {
 		Record object = (Record) other;
 		
 		// Check if files are different
-		if(this.record != object.getFile()) {
+		if(this != object) {
 			return false;
 		}
 			
@@ -204,7 +111,7 @@ public class Record {
 	@Override
 	public int hashCode() {
 		// Name, path, file object
-		String hash = this.getName() + this.getPath() + this.record.toString();
+		String hash = this.getName() + this.getPath() + this.toString();
 		
 		return hash.hashCode();
 	}
