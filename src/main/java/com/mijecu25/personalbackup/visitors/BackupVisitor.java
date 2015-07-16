@@ -1,10 +1,13 @@
-package com.mijecu25.personalbackup;
+package com.mijecu25.personalbackup.visitors;
+
+import java.util.spi.CurrencyNameProvider;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.mijecu25.dsa.DataStructures.LinkedListQueue;
 import com.mijecu25.personalbackup.file.Directory;
+import com.mijecu25.personalbackup.file.Path;
 import com.mijecu25.personalbackup.file.Record;
 
 /**
@@ -12,9 +15,9 @@ import com.mijecu25.personalbackup.file.Record;
  * 
  * @version 0.1.1.2
  */
-public class BackupManager implements Runnable {
+public class BackupVisitor implements Runnable, FileVisitor {
 	
-	private static final Logger logger = LogManager.getLogger(BackupManager.class);
+	private static final Logger logger = LogManager.getLogger(BackupVisitor.class);
 	
 	private Directory 		source;
 	private Directory		destination;
@@ -24,15 +27,15 @@ public class BackupManager implements Runnable {
 	/**
 	 * Create a new BackupManager.
 	 */
-	public BackupManager(String source, String destination) {
+	public BackupVisitor(String source, String destination) {
 		this.source = new Directory(source);
 		this.destination = new Directory(destination);
 		this.filesQueue = new LinkedListQueue();
 		this.isDone = false;
 
-		BackupManager.logger.info("Created a new BackupManager object");
-		BackupManager.logger.info("Source: " + this.source);
-		BackupManager.logger.info("Destination: " + this.destination);
+		BackupVisitor.logger.info("Created a new BackupManager object");
+		BackupVisitor.logger.info("Source: " + this.source);
+		BackupVisitor.logger.info("Destination: " + this.destination);
 		
 		// Add the source directory in the queue
 		this.filesQueue.enqueue(this.source);
@@ -51,33 +54,38 @@ public class BackupManager implements Runnable {
 	 */
 	@Override
 	public void run() {
-		BackupManager.logger.info("Executing backup manager main logic");
+		BackupVisitor.logger.info("Executing backup manager main logic");
 		
 		// Synchronize the backup manager main logic
 		synchronized(this) {
 			
 			// Create holders for records and directories
-			Record currentRecord;
+			Path currentRecord;
 			Directory currentDirectory;
 			
 			// While there are more files to process
 			while(!this.filesQueue.isEmpty()) {
 		
 					// dequeue the next file
-					currentRecord = (Record) this.filesQueue.dequeue();
-										
-					// If the current record is a directory
-					if(currentRecord.isDirectory()) {
-						// Get the current directory
-						currentDirectory = currentRecord.getAsDirectory();
-						
-						Record[] childRecords = currentDirectory.listRecords();
-						
-						for(Record child : childRecords) {
-							this.filesQueue.enqueue(child);
-						}
-					}
+					currentRecord = (Path) this.filesQueue.dequeue();
 					
+					currentRecord.accept(this);
+										
+//					// If the current record is a directory
+//					if(currentRecord.isDirectory()) {
+//						// Get the current directory
+//						currentDirectory = currentRecord.getAsDirectory();
+//						
+//						Record[] childRecords = (Record[]) currentDirectory.listFiles();
+//						
+//						for(Record child : childRecords) {
+//							this.filesQueue.enqueue(child);
+//						}
+//					}
+//					else {
+//						BackupManager.logger.info("This is where we should copy a file");
+//					}
+//					
 			}
 		
 			// Notify a thread waiting for the backup manager that it can continue
@@ -114,6 +122,18 @@ public class BackupManager implements Runnable {
 	 */
 	public boolean isDone() {
 		return this.isDone;
+	}
+
+	@Override
+	public Object visitRecord(Record record) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object visitDirectory(Directory directory) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
