@@ -1,8 +1,8 @@
 package com.mijecu25.personalbackup.file;
 
-import com.mijecu25.personalbackup.visitors.FileVisitor;
+import java.io.File;
 
-//import java.io.File;
+import com.mijecu25.personalbackup.visitors.FileVisitor;
 
 /**
  * A directory is a folder in the file system. It might contain other directories
@@ -10,7 +10,7 @@ import com.mijecu25.personalbackup.visitors.FileVisitor;
 
  * @author Miguel Velez
  * 
- * @version 0.1.1.4
+ * @version 0.1.1.5
  * 
  */
 public class Directory extends Path {
@@ -38,37 +38,37 @@ public class Directory extends Path {
 		return fileVisitor.visitDirectory(this);
 	}
 	
-//	/**
-//	 * Return a list of child records within this directory.
-//	 * 
-//	 * @return
-//	 */
-//	public Record[] listRecords() {
-//		// Get all child file records
-//		File[] files = this.listFiles();
-//		
-//		// Create the list where the records will be stored
-//		Record[] list = new Record[files.length];
-//		
-//		// Loop through all the files
-//		for(int i = 0; i < files.length; i++) {
-//			
-//			// Get a new record from the array
-//			Record hold = new Record(files[i].getPath());
-//						
-//			// If it is a directory
-//			if(hold.isDirectory()) {
-//				// Add it to the list as a directory
-//				list[i] = this.getAsDirectory();
-//			}
-//			else {
-//				// Add the record to the list
-//				list[i] = hold;
-//			}
-//		}
-//		
-//		// Return the list
-//		return list;
-//	}
+	/**
+	 * Return a list of child records within this directory.
+	 * 
+	 * @return
+	 */
+	public Path[] listPaths() {
+		// Get all child file records
+		File[] files = this.listFiles();
+		
+		// Create the list where the records will be stored
+		Path[] list = new Path[files.length];
+		
+		// Loop through all the files
+		for(int i = 0; i < files.length; i++) {
+
+			// Get a new record from the array
+			Record hold = new Record(files[i].getPath());
+						
+			// If it is a directory
+			if(hold.isDirectory()) {
+				// Add it to the list as a directory
+				list[i] = hold.getAsDirectory();
+			}
+			else {
+				// Add the record to the list
+				list[i] = hold;
+			}
+		}
+		
+		// Return the list
+		return list;
+	}
 	
 }
