@@ -3,7 +3,7 @@
 
   <groupId>com.mijecu25</groupId>
   <artifactId>personal-backup</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>PersonalBackup</name>
   <description>Backup program</description>
   <url>https://github.com/mijecu25/personal-backup</url>
