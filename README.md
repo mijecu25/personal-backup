@@ -3,6 +3,8 @@ personal-backup
 
 [![Build Status](https://travis-ci.org/mijecu25/personal-backup.svg?branch=master)](https://travis-ci.org/mijecu25/personal-backup)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mijecu25/personal-backup/master/LICENSE)
+[![docs-badge](https://img.shields.io/badge/API-docs-blue.svg)](http://mijecu25.com/software/personalbackup/0.0.1/apidocs/index.html)
+
 
 Backup software that performs incremental backups of directories or folders. New or updated files are replaced in exiting directories and new folders and files are created in the destination directory. Deleted files and folders in the source are also removed in the backup.
 
