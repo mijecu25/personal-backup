@@ -3,7 +3,7 @@
 
   <groupId>com.mijecu25</groupId>
   <artifactId>personal-backup</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>PersonalBackup</name>
   <description>Backup program</description>
   <url>https://github.com/mijecu25/personal-backup</url>
@@ -28,7 +28,7 @@
   	<connection>scm:git:git://github.com/mijecu25/personal-backup.git</connection>
 	<developerConnection>scm:git:git@github.com:mijecu25/personal-backup.git</developerConnection>
 	<url>https://github.com/mijecu25/personal-backup</url>
-   	<tag>personal-backup-0.0.1</tag>
+   	<tag>HEAD</tag>
   </scm>
   
   <developers>
