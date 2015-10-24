@@ -1,7 +1,12 @@
-language: java
+language: 
+        java
 
 jdk:
-  - oraclejdk7
-  - openjdk7
+        - oraclejdk7
+        - openjdk7
 
-script: mvn test
+script:
+        mvn test
+
+after_success:
+        - mvn cobertura:cobertura coveralls:report
