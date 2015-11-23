@@ -10,7 +10,7 @@ personal-backup
 
 Backup software that performs incremental backups of directories or folders. New or updated files are replaced in exiting directories and new folders and files are created in the destination directory. Deleted files and folders in the source are also removed in the backup.
 
-===============
+## License
 
 The MIT License (MIT)
 
