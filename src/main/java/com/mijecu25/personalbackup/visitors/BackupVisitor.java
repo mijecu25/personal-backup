@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.mijecu25.dsa.DataStructures.LinkedListQueue;
+//import com.mijecu25.dsa.DataStructures.LinkedListQueue;
 import com.mijecu25.personalbackup.file.Directory;
 import com.mijecu25.personalbackup.file.Path;
 import com.mijecu25.personalbackup.file.Record;
@@ -23,7 +23,7 @@ public class BackupVisitor implements Runnable, FileVisitor {
 	
 	private Directory 		source;
 	private Directory		destination;
-	private LinkedListQueue pathsQueue;
+//	private LinkedListQueue pathsQueue;
 	private List<Thread> children;
 	private boolean			isDone;
 
@@ -33,7 +33,7 @@ public class BackupVisitor implements Runnable, FileVisitor {
 	public BackupVisitor(String source, String destination) {
 		this.source = new Directory(source);
 		this.destination = new Directory(destination);
-		this.pathsQueue = new LinkedListQueue();
+//		this.pathsQueue = new LinkedListQueue();
 		this.children = new ArrayList<Thread>();
 		this.isDone = false;
 
@@ -42,7 +42,7 @@ public class BackupVisitor implements Runnable, FileVisitor {
 		BackupVisitor.logger.info("Destination: " + this.destination);
 		
 		// Add the source directory in the queue
-		this.pathsQueue.enqueue(this.source);
+//		this.pathsQueue.enqueue(this.source);
 	}
 	
 	/**
@@ -59,22 +59,22 @@ public class BackupVisitor implements Runnable, FileVisitor {
 			Path currentPath;
 									
 			// While there are more files to process
-			while(!this.pathsQueue.isEmpty()) {
-		
-				try {
-					// dequeue the next file
-					currentPath = (Path) this.pathsQueue.dequeue();
-					
-					// Pass this visitor to the current path
-					currentPath.accept(this);
-					
-					Thread.sleep(50);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-															
-			}
+//			while(!this.pathsQueue.isEmpty()) {
+//		
+//				try {
+//					// dequeue the next file
+//					currentPath = (Path) this.pathsQueue.dequeue();
+//					
+//					// Pass this visitor to the current path
+//					currentPath.accept(this);
+//					
+//					Thread.sleep(50);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//															
+//			}
 					
 			// Notify a thread waiting for the backup manager that it can continue
 			this.notify();			
@@ -156,7 +156,7 @@ public class BackupVisitor implements Runnable, FileVisitor {
 			// If the child is a record
 			if(child instanceof Record) {
 				// Added to the queue to process
-				this.pathsQueue.enqueue(child);		
+//				this.pathsQueue.enqueue(child);		
 			}
 			// If the child is a directory
 			else if(child instanceof Directory) {	

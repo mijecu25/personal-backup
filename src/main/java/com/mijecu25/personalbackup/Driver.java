@@ -16,21 +16,21 @@ import com.mijecu25.personalbackup.visitors.BackupVisitor;
 
 public class Driver {
 
-	private static StringBuilder SOURCE = new StringBuilder("C:/"
-																+ "Users/"
-																+ "Miguel/"
-																+ "Desktop/"
-																+ "Backup/"
-																+ "Documents");
-	
-	
-
-	private static StringBuilder SERVER = new StringBuilder("C:/"
-																+ "Users/"
-																+ "Miguel/"
-																+ "Desktop/"
-																+ "Backup/"
-																+ "Server");
+//	private static StringBuilder SOURCE = new StringBuilder("C:/"
+//																+ "Users/"
+//																+ "Miguel/"
+//																+ "Desktop/"
+//																+ "Backup/"
+//																+ "Documents");
+//	
+//	
+//
+//	private static StringBuilder SERVER = new StringBuilder("C:/"
+//																+ "Users/"
+//																+ "Miguel/"
+//																+ "Desktop/"
+//																+ "Backup/"
+//																+ "Server");
 	
 	private static final Logger logger = LogManager.getLogger(Driver.class);
 				
@@ -40,8 +40,8 @@ public class Driver {
 		
 		Driver.logger.info("Start backup");  
 		
-		StringBuilder source = new StringBuilder("C:/Users/Miguel/Desktop/Source");
-		StringBuilder destination = new StringBuilder("C:/Users/Miguel/Desktop/Destination");
+		StringBuilder source = new StringBuilder("TODO"); // TODO
+		StringBuilder destination = new StringBuilder("TODO"); // TODO
 				
 		BackupVisitor backupVisitor = new BackupVisitor(source.toString(), destination.toString());
 

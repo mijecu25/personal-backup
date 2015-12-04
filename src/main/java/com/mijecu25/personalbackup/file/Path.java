@@ -15,12 +15,12 @@ public abstract class Path extends File {
 
 	private static final long serialVersionUID = 638321617215803197L;
 	
-	private long length; 
+//	private long length; 
 
 	public Path(String pathname) {
 		super(pathname);
 		
-		this.length = this.getLength();
+//		this.length = this.getLength();
 	}
 	
 	/**
@@ -37,28 +37,29 @@ public abstract class Path extends File {
 	 * @return a long representing the length in bytes of the record.
 	 */
 	public long getLength() {
-		return this.length;
+//		return this.length;
+	    return this.length();
 	}
 	
-	/**
-	 * Return the name of the record.
-	 * 
-	 * @return a string that represents the name of the record.
-	 */
-	@Override
-	public String getName() {
-		return super.getName();
-	}
+//	/**
+//	 * Return the name of the record.
+//	 * 
+//	 * @return a string that represents the name of the record.
+//	 */
+//	@Override
+//	public String getName() {
+//		return super.getName();
+//	}
 	
-	/**
-	 * Return the path of the record.
-	 * 
-	 * @return a string that represents the path of the record.
-	 */
-	@Override
-	public String getPath() {
-		return super.getPath();
-	}
+//	/**
+//	 * Return the path of the record.
+//	 * 
+//	 * @return a string that represents the path of the record.
+//	 */
+//	@Override
+//	public String getPath() {
+//		return super.getPath();
+//	}
 	
 	/**
 	 * Return the last modified date of the record.
@@ -87,15 +88,15 @@ public abstract class Path extends File {
 		return new Directory(super.getParent());
 	}
 	
-	/**
-	 * Return whether the record is a directory.
-	 * 
-	 * @return boolean indicating if the record is a directory.
-	 */
-	@Override
-	public boolean isDirectory() {
-		return super.isDirectory();
-	}
+//	/**
+//	 * Return whether the record is a directory.
+//	 * 
+//	 * @return boolean indicating if the record is a directory.
+//	 */
+//	@Override
+//	public boolean isDirectory() {
+//		return super.isDirectory();
+//	}
 	
 	/**
 	 * Return this record as a directory object. The record must be a directory in
