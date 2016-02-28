@@ -1,10 +1,10 @@
 personal-backup
 ===============
 
-[![Build Status](https://travis-ci.org/mijecu25/personal-backup.svg?branch=master)](https://travis-ci.org/mijecu25/personal-backup)
-[![Coverage Status](https://coveralls.io/repos/mijecu25/personal-backup/badge.svg?branch=master&service=github)](https://coveralls.io/github/mijecu25/personal-backup?branch=master)
+[![Build Status](https://travis-ci.org/mijecu25/personal-backup.svg?branch=develop)](https://travis-ci.org/mijecu25/personal-backup)
+[![Coverage Status](https://coveralls.io/repos/github/mijecu25/personal-backup/badge.svg?branch=develop)](https://coveralls.io/github/mijecu25/personal-backup?branch=develop)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mijecu25/personal-backup/badge.svg)](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22personal-backup%22)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mijecu25/personal-backup/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mijecu25/personal-backup/develop/LICENSE)
 [![docs-badge](https://img.shields.io/badge/API-docs-blue.svg)](http://mijecu25.com/software/personalbackup/0.0.1/apidocs/index.html)
 
 
